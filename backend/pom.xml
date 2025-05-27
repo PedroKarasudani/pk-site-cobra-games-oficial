@@ -4,14 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.3</version>
+        <relativePath/>
+    </parent>
+
     <groupId>br.com.coralcobragames</groupId>
     <artifactId>backend</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>coralcobragames-infrastructure</module>
-        <module>coralcobragames-domain</module>
-        <module>coralcobragames-config</module>
+        <module>domain</module>
+        <module>config</module>
+        <module>infrastructure</module>
     </modules>
 
     <properties>

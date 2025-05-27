@@ -6,11 +6,10 @@
     <parent>
         <groupId>br.com.coralcobragames</groupId>
         <artifactId>backend</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>br.com.coralcobragames.domain</groupId>
-    <artifactId>coralcobragames-domain</artifactId>
+    <artifactId>domain</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

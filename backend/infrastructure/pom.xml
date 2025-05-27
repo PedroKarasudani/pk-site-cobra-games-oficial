@@ -6,10 +6,15 @@
     <parent>
         <groupId>br.com.coralcobragames</groupId>
         <artifactId>backend</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>coralcobragames-config</artifactId>
+    <artifactId>infrastructure</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>web</module>
+        <module>persistence</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
