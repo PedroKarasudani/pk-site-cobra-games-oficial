@@ -1,0 +1,18 @@
+package br.com.coralcobragames.domain.port.api.usecase.user;
+
+import br.com.coralcobragames.domain.port.api.user.DeleteUser;
+import br.com.coralcobragames.domain.port.spi.UserPort;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+public class DeleteUserUserCase implements DeleteUser {
+
+    private UserPort port;
+
+    @Override
+    public void deleteById(Long id) {
+        this.port.deleteById(id);
+    }
+}
