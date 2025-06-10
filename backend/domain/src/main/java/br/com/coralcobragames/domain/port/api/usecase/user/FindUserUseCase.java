@@ -6,6 +6,8 @@ import br.com.coralcobragames.domain.port.spi.UserPort;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.Optional;
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class FindUserUseCase implements FindUser {
@@ -13,7 +15,7 @@ public class FindUserUseCase implements FindUser {
     private UserPort port;
 
     @Override
-    public User findById(Long id) {
+    public Optional<User> findById(Long id) {
         return this.port.findById(id);
     }
 }
