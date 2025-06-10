@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeleteUserUserCase implements DeleteUser {
+public class DeleteUserUseCase implements DeleteUser {
 
     private UserPort port;
 
