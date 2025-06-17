@@ -1,0 +1,1 @@
+INSERT INTO tb_users (name, email, password, role, enabled) VALUES ('Pedro','pedro@mail.com','123','ADMIN',true)
