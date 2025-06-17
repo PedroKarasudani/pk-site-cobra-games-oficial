@@ -7,8 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "br.com.coralcobragames.persistence")
 @EntityScan(basePackages = "br.com.coralcobragames.persistence.model")
+@ComponentScan(basePackages = "br.com.coralcobragames")
 @EnableJpaRepositories(basePackages = "br.com.coralcobragames.persistence")
 public class BackendWebApplication {
     public static void main(String[] args) {
