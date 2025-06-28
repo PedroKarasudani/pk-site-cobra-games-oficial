@@ -1,1 +1,2 @@
-INSERT INTO tb_users (name, email, password, role, enabled) VALUES ('Pedro','pedro@mail.com','123','ADMIN',true)
+INSERT INTO tb_users (name, email, password, role, enabled) VALUES ('Pedro','pedro@mail.com','123','ADMIN',true);
+INSERT INTO tb_contact_message (name, email, message, created_at) VALUES ('Pedro','pedro@mail.com','Olá Amigo', CURRENT_TIMESTAMP());
