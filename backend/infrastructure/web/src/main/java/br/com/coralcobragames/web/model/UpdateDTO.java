@@ -1,5 +1,6 @@
 package br.com.coralcobragames.web.model;
 
+import br.com.coralcobragames.domain.model.TeamMember;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

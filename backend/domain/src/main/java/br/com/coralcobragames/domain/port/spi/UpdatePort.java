@@ -1,7 +1,6 @@
 package br.com.coralcobragames.domain.port.spi;
 
 import br.com.coralcobragames.domain.model.Update;
-import br.com.coralcobragames.domain.model.User;
 
 import java.util.Optional;
 

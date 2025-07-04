@@ -25,7 +25,7 @@ public class UpdateEntity {
         private LocalDateTime date;
         private String type;
         @ManyToOne
-        private TeamMember author;
+        private TeamMemberEntity author;
 
 
     public static UpdateEntity fromDomain(Update update, Long id) {
@@ -35,7 +35,7 @@ public class UpdateEntity {
                 .fullText(update.getFullText())
                 .date(update.getDate())
                 .type(update.getType())
-                .author(update.getAuthor())
+                .author(TeamMemberEntity.fromDomain(update.getAuthor(), id))
                 .build();
     }
 
@@ -46,7 +46,7 @@ public class UpdateEntity {
                 .fullText(this.getFullText())
                 .date(this.getDate())
                 .type(this.getType())
-                .author(this.getAuthor())
+                .author(this.getAuthor().toDomain())
                 .build();
     }
 
