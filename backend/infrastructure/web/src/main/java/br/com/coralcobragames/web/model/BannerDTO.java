@@ -16,5 +16,6 @@ public class BannerDTO {
     private String videoUrl;
     private String title;
     private String subtitle;
+    private GamesDTO gamesDTO;
 
 }

@@ -26,7 +26,8 @@ public class GamesEntity {
     private String platform;
     private String linkDownload;
     private LocalDateTime releaseDate;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "banner_id")
     private BannerEntity banner;
 
     public static GamesEntity fromDomain(Games games, Long id) {
@@ -37,7 +38,6 @@ public class GamesEntity {
                 .platform(games.getPlatform())
                 .linkDownload(games.getLinkDownload())
                 .releaseDate(games.getReleaseDate())
-                .banner(BannerEntity.fromDomain(games.getBanner(), id))
                 .build();
     }
 
@@ -49,7 +49,18 @@ public class GamesEntity {
                 .platform(this.getPlatform())
                 .linkDownload(this.getLinkDownload())
                 .releaseDate(this.getReleaseDate())
-                .banner(this.getBanner().toDomain())
+                .banner(this.getBanner() != null ? this.getBanner().toDomainShallow() : null)
+                .build();
+    }
+
+    public Games toDomainShallow() {
+        return Games.builder()
+                .id(this.getId())
+                .title(this.getTitle())
+                .description(this.getDescription())
+                .platform(this.getPlatform())
+                .linkDownload(this.getLinkDownload())
+                .releaseDate(this.getReleaseDate())
                 .build();
     }
 }

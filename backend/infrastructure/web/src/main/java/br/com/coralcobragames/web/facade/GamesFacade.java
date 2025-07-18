@@ -1,5 +1,7 @@
 package br.com.coralcobragames.web.facade;
 
+import br.com.coralcobragames.domain.model.Banner;
+import br.com.coralcobragames.domain.model.Games;
 import br.com.coralcobragames.domain.port.api.games.CreateGames;
 import br.com.coralcobragames.domain.port.api.games.DeleteGames;
 import br.com.coralcobragames.domain.port.api.games.FindGames;
@@ -17,23 +19,43 @@ public class GamesFacade {
     private final FindGames findGames;
     private final DeleteGames deleteGames;
     private final UpdateGames updateGames;
-    private final GamesConverter converter;
+    private final GamesConverter gamesConverter;
+    private final BannerConverter bannerConverter;
 
     @Autowired
-    public GamesFacade(CreateGames createGames, FindGames findGames, DeleteGames deleteGames, UpdateGames updateGames, GamesConverter converter) {
+    public GamesFacade(CreateGames createGames, FindGames findGames, DeleteGames deleteGames, UpdateGames updateGames, GamesConverter gamesConverter, BannerConverter bannerConverter) {
         this.createGames = createGames;
         this.findGames = findGames;
         this.deleteGames = deleteGames;
         this.updateGames = updateGames;
-        this.converter = converter;
+        this.gamesConverter = gamesConverter;
+        this.bannerConverter = bannerConverter;
+    }
+
+    public Games toDomain(GamesDTO dto){
+        Games game = gamesConverter.toDomain(dto);
+        if (dto.getBannerDTO() != null) {
+            Banner banner = bannerConverter.toDomain(dto.getBannerDTO());
+            banner.setGame(game);
+            game.setBanner(banner);
+        }
+        return game;
+    }
+
+    public GamesDTO toDTO(Games entity){
+        GamesDTO dto = gamesConverter.toDTO(entity);
+        if (entity.getBanner() != null) {
+            dto.setBannerDTO(bannerConverter.toDTO(entity.getBanner()));
+        }
+        return dto;
     }
 
     public GamesDTO create(GamesDTO gamesDTO){
-        return this.converter.toDTO(this.createGames.create(this.converter.toDomain(gamesDTO)));
+        return this.gamesConverter.toDTO(this.createGames.create(this.gamesConverter.toDomain(gamesDTO)));
     }
 
     public GamesDTO findById(Long id) {
-        return this.converter.toDTO(this.findGames.findById(id).get());
+        return this.gamesConverter.toDTO(this.findGames.findById(id).get());
     }
 
     public void delete(Long id){
@@ -41,6 +63,6 @@ public class GamesFacade {
     }
 
     public GamesDTO update(GamesDTO gamesDTO, Long id){
-        return this.converter.toDTO(this.updateGames.update(this.converter.toDomain(gamesDTO),id));
+        return this.gamesConverter.toDTO(this.updateGames.update(this.gamesConverter.toDomain(gamesDTO),id));
     }
 }

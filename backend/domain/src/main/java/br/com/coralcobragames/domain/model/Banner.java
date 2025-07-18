@@ -14,5 +14,6 @@ public class Banner {
     private String videoUrl;
     private String title;
     private String subtitle;
+    private Games game;
 
 }

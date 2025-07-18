@@ -1,6 +1,7 @@
 package br.com.coralcobragames.persistence.model;
 
 import br.com.coralcobragames.domain.model.Banner;
+import br.com.coralcobragames.domain.model.Games;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,8 @@ public class BannerEntity {
     private String videoUrl;
     private String title;
     private String subtitle;
+    @OneToOne(mappedBy = "banner")
+    private GamesEntity game;
 
     public static BannerEntity fromDomain(Banner banner, Long id) {
         return BannerEntity.builder()
@@ -33,7 +36,18 @@ public class BannerEntity {
                 .build();
     }
 
-    public Banner toDomain(){
+    public Banner toDomain() {
+        return Banner.builder()
+                .id(this.getId())
+                .imageUrl(this.getImageUrl())
+                .videoUrl(this.getVideoUrl())
+                .title(this.getTitle())
+                .subtitle(this.getSubtitle())
+                .game(this.game != null ? this.game.toDomainShallow() : null)
+                .build();
+    }
+
+    public Banner toDomainShallow() {
         return Banner.builder()
                 .id(this.getId())
                 .imageUrl(this.getImageUrl())
@@ -42,5 +56,4 @@ public class BannerEntity {
                 .subtitle(this.getSubtitle())
                 .build();
     }
-
 }

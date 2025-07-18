@@ -2,17 +2,10 @@ package br.com.coralcobragames.web.converter;
 
 import br.com.coralcobragames.domain.model.Games;
 import br.com.coralcobragames.web.model.GamesDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class GamesConverter {
-
-    private final BannerConverter bannerConverter;
-
-    public GamesConverter(BannerConverter bannerConverter) {
-        this.bannerConverter = bannerConverter;
-    }
 
     public Games toDomain(GamesDTO gamesDTO){
         return Games.builder()
@@ -22,7 +15,6 @@ public class GamesConverter {
                 .platform(gamesDTO.getPlatform())
                 .linkDownload(gamesDTO.getLinkDownload())
                 .releaseDate(gamesDTO.getReleaseDate())
-                .banner(bannerConverter.toDomain(gamesDTO.getBanner()))
                 .build();
     }
 
@@ -34,7 +26,6 @@ public class GamesConverter {
                 .platform(games.getPlatform())
                 .linkDownload(games.getLinkDownload())
                 .releaseDate(games.getReleaseDate())
-                .banner(bannerConverter.toDTO(games.getBanner()))
                 .build();
     }
 }

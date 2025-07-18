@@ -20,5 +20,5 @@ public class GamesDTO {
     private String platform;
     private String linkDownload;
     private LocalDateTime releaseDate;
-    private BannerDTO banner;
+    private BannerDTO bannerDTO;
 }

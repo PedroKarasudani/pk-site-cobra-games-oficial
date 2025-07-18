@@ -2,7 +2,6 @@ package br.com.coralcobragames.web.converter;
 
 import br.com.coralcobragames.domain.model.Banner;
 import br.com.coralcobragames.web.model.BannerDTO;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
