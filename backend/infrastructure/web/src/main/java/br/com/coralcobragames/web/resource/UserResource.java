@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserResource {
@@ -16,6 +18,11 @@ public class UserResource {
     @GetMapping("/{id}")
     ResponseEntity<UserDTO> findById (@PathVariable Long id) {
         return ResponseEntity.ok().body(this.facade.findById(id));
+    }
+
+    @GetMapping
+    ResponseEntity<List<UserDTO>> findAll() {
+        return ResponseEntity.ok().body(this.facade.findAll());
     }
 
     @PostMapping

@@ -5,6 +5,7 @@ import br.com.coralcobragames.domain.port.spi.UserPort;
 import br.com.coralcobragames.persistence.model.UserEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -34,5 +35,15 @@ public class UserRepositoryAdapter implements UserPort {
     @Override
     public void deleteById(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<User> findByName(String name) {
+        return userRepository.findByNameIgnoreCase(name).stream().map(UserEntity::toDomain).findFirst();
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll().stream().map(UserEntity::toDomain).toList();
     }
 }

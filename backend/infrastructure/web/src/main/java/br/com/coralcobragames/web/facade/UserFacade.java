@@ -10,6 +10,8 @@ import br.com.coralcobragames.web.model.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserFacade {
 
@@ -27,6 +29,10 @@ public class UserFacade {
 
     public UserDTO findById(Long id) {
         return this.converter.toDTO(this.findUser.findById(id).get());
+    }
+
+    public List<UserDTO> findAll() {
+        return this.converter.toDTO(this.findUser.findAll());
     }
 
     public UserDTO create(UserDTO userDTO) {
