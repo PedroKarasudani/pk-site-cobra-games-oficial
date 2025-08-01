@@ -1,5 +1,6 @@
 package br.com.coralcobragames.domain.port.api.usecase.banner;
 
+import br.com.coralcobragames.domain.exceptions.BannerNotFoundException;
 import br.com.coralcobragames.domain.model.Banner;
 import br.com.coralcobragames.domain.port.api.banner.UpdateBanner;
 import br.com.coralcobragames.domain.port.spi.BannerPort;
@@ -13,6 +14,7 @@ public class UpdateBannerUseCase implements UpdateBanner {
     private BannerPort port;
 
     public Banner update(Banner banner, Long id){
+        this.port.findById(id).orElseThrow(() -> new BannerNotFoundException(id));
         return this.port.update(banner, id);
     }
 }

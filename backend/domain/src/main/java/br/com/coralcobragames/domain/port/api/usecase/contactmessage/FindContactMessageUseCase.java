@@ -1,5 +1,6 @@
 package br.com.coralcobragames.domain.port.api.usecase.contactmessage;
 
+import br.com.coralcobragames.domain.exceptions.ContactMessageNotFoundException;
 import br.com.coralcobragames.domain.model.ContactMessage;
 import br.com.coralcobragames.domain.port.api.contactmessage.FindContactMessage;
 import br.com.coralcobragames.domain.port.spi.ContactMessagePort;
@@ -16,6 +17,6 @@ public class FindContactMessageUseCase implements FindContactMessage {
 
     @Override
     public Optional<ContactMessage> findById(Long id) {
-        return this.port.findById(id);
+        return Optional.of(this.port.findById(id).orElseThrow(() -> new ContactMessageNotFoundException(id)));
     }
 }

@@ -1,5 +1,6 @@
 package br.com.coralcobragames.domain.port.api.usecase.contactmessage;
 
+import br.com.coralcobragames.domain.exceptions.ContactMessageNotFoundException;
 import br.com.coralcobragames.domain.port.api.contactmessage.DeleteContactMessage;
 import br.com.coralcobragames.domain.port.spi.ContactMessagePort;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ public class DeleteContactMessageUseCase implements DeleteContactMessage {
 
     @Override
     public void deleteById(Long id) {
+        this.port.findById(id).orElseThrow(() -> new ContactMessageNotFoundException(id));
         this.port.deleteById(id);
     }
 }

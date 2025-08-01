@@ -1,5 +1,6 @@
 package br.com.coralcobragames.domain.port.api.usecase.companyinfo;
 
+import br.com.coralcobragames.domain.exceptions.CompanyInfoNotFoundException;
 import br.com.coralcobragames.domain.model.CompanyInfo;
 import br.com.coralcobragames.domain.port.api.companyinfo.FindCompanyInfo;
 import br.com.coralcobragames.domain.port.spi.CompanyInfoPort;
@@ -16,6 +17,7 @@ public class FindCompanyInfoUseCase implements FindCompanyInfo {
 
     @Override
     public Optional<CompanyInfo> findById(Long id) {
-        return this.port.findById(id);
+
+        return Optional.of(this.port.findById(id).orElseThrow(() -> new CompanyInfoNotFoundException(id)));
     }
 }

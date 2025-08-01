@@ -1,5 +1,6 @@
 package br.com.coralcobragames.domain.port.api.usecase.companyinfo;
 
+import br.com.coralcobragames.domain.exceptions.CompanyInfoNotFoundException;
 import br.com.coralcobragames.domain.model.CompanyInfo;
 import br.com.coralcobragames.domain.port.api.companyinfo.UpdateCompanyInfo;
 import br.com.coralcobragames.domain.port.spi.CompanyInfoPort;
@@ -14,6 +15,7 @@ public class UpdateCompanyInfoUseCase implements UpdateCompanyInfo {
 
     @Override
     public CompanyInfo update(CompanyInfo companyInfo, Long id) {
+        this.port.findById(id).orElseThrow(() -> new CompanyInfoNotFoundException(id));
         return this.update(companyInfo, id);
     }
 }

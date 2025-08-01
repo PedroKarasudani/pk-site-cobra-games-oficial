@@ -1,5 +1,6 @@
 package br.com.coralcobragames.domain.port.api.usecase.teammember;
 
+import br.com.coralcobragames.domain.exceptions.TeamMemberNotFoundException;
 import br.com.coralcobragames.domain.port.api.teammember.DeleteTeamMember;
 import br.com.coralcobragames.domain.port.spi.TeamMemberPort;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ public class DeleteTeamMemberUseCase implements DeleteTeamMember {
 
     @Override
     public void delete(Long id) {
+        this.port.findById(id).orElseThrow(() -> new TeamMemberNotFoundException(id));
         this.port.delete(id);
     }
 }

@@ -1,5 +1,6 @@
 package br.com.coralcobragames.domain.port.api.usecase.companyinfo;
 
+import br.com.coralcobragames.domain.exceptions.CompanyInfoNotFoundException;
 import br.com.coralcobragames.domain.port.api.companyinfo.DeleteCompanyInfo;
 import br.com.coralcobragames.domain.port.spi.CompanyInfoPort;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ public class DeleteCompanyInfoUseCase implements DeleteCompanyInfo {
 
     @Override
     public void delete(Long id) {
+        this.port.findById(id).orElseThrow(() -> new CompanyInfoNotFoundException(id));
         this.port.delete(id);
     }
 }

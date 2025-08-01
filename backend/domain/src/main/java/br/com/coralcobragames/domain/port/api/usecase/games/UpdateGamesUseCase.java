@@ -1,5 +1,6 @@
 package br.com.coralcobragames.domain.port.api.usecase.games;
 
+import br.com.coralcobragames.domain.exceptions.GamesNotFoundException;
 import br.com.coralcobragames.domain.model.Games;
 import br.com.coralcobragames.domain.port.api.games.UpdateGames;
 import br.com.coralcobragames.domain.port.spi.GamesPort;
@@ -13,6 +14,7 @@ public class UpdateGamesUseCase implements UpdateGames {
     private GamesPort port;
 
     public Games update(Games games, Long id){
+        this.port.findById(id).orElseThrow(() -> new GamesNotFoundException(id));
         return this.port.update(games, id);
     }
 }

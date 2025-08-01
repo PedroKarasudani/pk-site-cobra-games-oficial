@@ -1,5 +1,6 @@
 package br.com.coralcobragames.domain.port.api.usecase.update;
 
+import br.com.coralcobragames.domain.exceptions.UpdateNotFoundException;
 import br.com.coralcobragames.domain.model.Update;
 import br.com.coralcobragames.domain.port.api.update.UpdateUpdate;
 import br.com.coralcobragames.domain.port.spi.UpdatePort;
@@ -14,6 +15,7 @@ public class UpdateUpdateUseCase implements UpdateUpdate {
 
     @Override
     public Update update(Update update, Long id) {
+        this.port.findById(id).orElseThrow(() -> new UpdateNotFoundException(id));
         return this.port.update(update, id);
     }
 }
